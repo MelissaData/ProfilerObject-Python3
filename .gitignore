@@ -5,3 +5,5 @@ mdProfiler.dll.hash
 MelissaUpdater
 testFile.prf
 # mdProfiler_pythoncode.py
+
+*.hash
