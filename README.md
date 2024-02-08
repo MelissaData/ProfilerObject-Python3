@@ -96,8 +96,8 @@ The console will then prompt you with the following warning shown in the image b
 
 #### Download this project
 ```
-$ git clone https://github.com/MelissaData/ProfilerObject-python3
-$ cd ProfilerObject-python3
+$ git clone https://github.com/MelissaData/ProfilerObject-Python3
+$ cd ProfilerObject-Python3
 ```
 
 #### Set up Melissa Updater 
