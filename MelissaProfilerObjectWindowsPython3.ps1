@@ -5,6 +5,7 @@
 
 param(
   $file = '""',
+  $dataPath = '',
   $license = '', 
   [switch]$quiet = $false 
   )
@@ -31,15 +32,22 @@ $RELEASE_VERSION = '2024.Q3'
 $ProductName = "profiler_data"
 
 # Uses the location of the .ps1 file 
-# Modify this if you want to use 
 $CurrentPath = $PSScriptRoot
 Set-Location $CurrentPath
 $ProjectPath = "$CurrentPath\MelissaProfilerObjectWindowsPython3"
-$DataPath = "$ProjectPath\Data"
-$BuildPath = "$ProjectPath"
 
-If (!(Test-Path $DataPath)) {
+if ([string]::IsNullOrEmpty($dataPath)) {
+  $DataPath = "$ProjectPath\Data" 
+}
+
+if (!(Test-Path $DataPath) -and ($DataPath -eq "$ProjectPath\Data")) {
   New-Item -Path $ProjectPath -Name 'Data' -ItemType "directory"
+}
+elseif (!(Test-Path $DataPath) -and ($DataPath -ne "$ProjectPath\Data")) {
+  Write-Host "`nData file path does not exist. Please check that your file path is correct."
+  Write-Host "`nAborting program, see above.  Press any button to exit.`n"
+  $Host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown") > $null
+  exit
 }
 
 $DLLs = @(
@@ -85,14 +93,14 @@ function DownloadDLLs() {
 
     # Check for quiet mode
     if ($quiet) {
-      .\MelissaUpdater\MelissaUpdater.exe file --filename $DLL.FileName --release_version $DLL.ReleaseVersion --license $LICENSE --os $DLL.OS --compiler $DLL.Compiler --architecture $DLL.Architecture --type $DLL.Type --target_directory $BuildPath > $null
+      .\MelissaUpdater\MelissaUpdater.exe file --filename $DLL.FileName --release_version $DLL.ReleaseVersion --license $LICENSE --os $DLL.OS --compiler $DLL.Compiler --architecture $DLL.Architecture --type $DLL.Type --target_directory $ProjectPath > $null
       if(($?) -eq $False) {
           Write-Host "`nCannot run Melissa Updater. Please check your license string!"
           Exit
       }
     }
     else {
-      .\MelissaUpdater\MelissaUpdater.exe file --filename $DLL.FileName --release_version $DLL.ReleaseVersion --license $LICENSE --os $DLL.OS --compiler $DLL.Compiler --architecture $DLL.Architecture --type $DLL.Type --target_directory $BuildPath 
+      .\MelissaUpdater\MelissaUpdater.exe file --filename $DLL.FileName --release_version $DLL.ReleaseVersion --license $LICENSE --os $DLL.OS --compiler $DLL.Compiler --architecture $DLL.Architecture --type $DLL.Type --target_directory $ProjectPath 
       if(($?) -eq $False) {
           Write-Host "`nCannot run Melissa Updater. Please check your license string!"
           Exit
@@ -129,7 +137,7 @@ function DownloadWrapper() {
 function CheckDLLs() {
   Write-Host "`nDouble checking dll(s) were downloaded...`n"
   $FileMissing = $false 
-  if (!(Test-Path ("$BuildPath\mdProfiler.dll"))) {
+  if (!(Test-Path ("$ProjectPath\mdProfiler.dll"))) {
     Write-Host "mdProfiler.dll not found." 
     $FileMissing = $true
   }
@@ -153,19 +161,34 @@ if ([string]::IsNullOrEmpty($license) ) {
 
 # Check for License from Environment Variables 
 if ([string]::IsNullOrEmpty($License) ) {
-  $License = $env:MD_LICENSE # Get-ChildItem -Path Env:\MD_LICENSE   #[System.Environment]::GetEnvironmentVariable('MD_LICENSE')
+  $License = $env:MD_LICENSE 
 }
 
 if ([string]::IsNullOrEmpty($License)) {
   Write-Host "`nLicense String is invalid!"
   Exit
 }
+
+# Get data file path (either from parameters or user input)
+if ($DataPath -eq "$ProjectPath\Data") {
+  $dataPathInput = Read-Host "Please enter your data files path directory if you have already downloaded the release zip.`nOtherwise, the data files will be downloaded using the Melissa Updater (Enter to skip)"
+
+  if (![string]::IsNullOrEmpty($dataPathInput)) {
+    if (!(Test-Path $dataPathInput)) {
+      Write-Host "`nData file path does not exist. Please check that your file path is correct."
+      Write-Host "`nAborting program, see above.  Press any button to exit.`n"
+      $Host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown") > $null
+      exit
+    }
+    else {
+      $DataPath = $dataPathInput
+    }
+  }
+}
+
 # Use Melissa Updater to download data file(s) 
 # Download data file(s) 
-DownloadDataFiles -license $License      # comment out this line if using DQS Release
-
-# Set data file(s) path
-#$DataPath = "C:\Program Files\Melissa DATA\DQT\Data"      # uncomment this line and change to your DQS Release data file(s) directory 
+DownloadDataFiles -license $License # Comment out this line if using own release
 
 # Download dll(s)
 DownloadDlls -license $License
@@ -189,11 +212,11 @@ Write-Host "All file(s) have been downloaded/updated! "
 
 if ([string]::IsNullOrEmpty($file) ) {
   Push-Location MelissaProfilerObjectWindowsPython3
-  python3 $BuildPath\MelissaProfilerObjectWindowspython3.py --license $License  --dataPath $DataPath
+  python3 MelissaProfilerObjectWindowspython3.py --license $License  --dataPath $DataPath
   Pop-Location
 }
 else {
   Push-Location MelissaProfilerObjectWindowsPython3
-  python3 $BuildPath\MelissaProfilerObjectWindowsPython3.py --license $License  --dataPath $DataPath --file $file
+  python3 MelissaProfilerObjectWindowsPython3.py --license $License  --dataPath $DataPath --file $file
   Pop-Location
 }
