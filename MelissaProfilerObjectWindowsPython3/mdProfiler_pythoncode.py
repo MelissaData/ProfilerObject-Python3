@@ -575,37 +575,37 @@ class mdProfiler(object):
 		lib.mdProfilerDestroy(self.I)
 
 	def SetLicenseString(self, license):
-		return lib.mdProfilerSetLicenseString(self.I, license.encode('utf-8'))
+		return lib.mdProfilerSetLicenseString(self.I, (license or '').encode('utf-8'))
 
 	def SetPathToProfilerDataFiles(self, path):
-		lib.mdProfilerSetPathToProfilerDataFiles(self.I, path.encode('utf-8'))
+		lib.mdProfilerSetPathToProfilerDataFiles(self.I, (path or '').encode('utf-8'))
 
 	def SetFileName(self, fileName):
-		lib.mdProfilerSetFileName(self.I, fileName.encode('utf-8'))
+		lib.mdProfilerSetFileName(self.I, (fileName or '').encode('utf-8'))
 
 	def SetAppendMode(self, appendMode):
 		lib.mdProfilerSetAppendMode(self.I, AppendMode(appendMode).value)
 
 	def SetUserName(self, userName):
-		lib.mdProfilerSetUserName(self.I, userName.encode('utf-8'))
+		lib.mdProfilerSetUserName(self.I, (userName or '').encode('utf-8'))
 
 	def GetUserName(self):
 		return lib.mdProfilerGetUserName(self.I).decode('utf-8')
 
 	def SetTableName(self, tableName):
-		lib.mdProfilerSetTableName(self.I, tableName.encode('utf-8'))
+		lib.mdProfilerSetTableName(self.I, (tableName or '').encode('utf-8'))
 
 	def GetTableName(self):
 		return lib.mdProfilerGetTableName(self.I).decode('utf-8')
 
 	def SetJobName(self, jobName):
-		lib.mdProfilerSetJobName(self.I, jobName.encode('utf-8'))
+		lib.mdProfilerSetJobName(self.I, (jobName or '').encode('utf-8'))
 
 	def GetJobName(self):
 		return lib.mdProfilerGetJobName(self.I).decode('utf-8')
 
 	def SetJobDescription(self, jobDescription):
-		lib.mdProfilerSetJobDescription(self.I, jobDescription.encode('utf-8'))
+		lib.mdProfilerSetJobDescription(self.I, (jobDescription or '').encode('utf-8'))
 
 	def GetJobDescription(self):
 		return lib.mdProfilerGetJobDescription(self.I).decode('utf-8')
@@ -650,7 +650,7 @@ class mdProfiler(object):
 		return lib.mdProfilerGetColumnTypeDescription(self.I, ProfilerColumnType(columnType).value).decode('utf-8')
 
 	def ParseColumnTypeDescription(self, columnTypeStr):
-		return ProfilerColumnType(lib.mdProfilerParseColumnTypeDescription(self.I, columnTypeStr.encode('utf-8')))
+		return ProfilerColumnType(lib.mdProfilerParseColumnTypeDescription(self.I, (columnTypeStr or '').encode('utf-8')))
 
 	def GetDataTypeEnum(self):
 		return lib.mdProfilerGetDataTypeEnum(self.I).decode('utf-8')
@@ -659,67 +659,67 @@ class mdProfiler(object):
 		return lib.mdProfilerGetDataTypeDescription(self.I, ProfilerDataType(dataType).value).decode('utf-8')
 
 	def ParseDataTypeDescription(self, dataTypeStr):
-		return ProfilerDataType(lib.mdProfilerParseDataTypeDescription(self.I, dataTypeStr.encode('utf-8')))
+		return ProfilerDataType(lib.mdProfilerParseDataTypeDescription(self.I, (dataTypeStr or '').encode('utf-8')))
 
 	def GetResultCodeEnum(self):
 		return lib.mdProfilerGetResultCodeEnum(self.I).decode('utf-8')
 
 	def GetResultCodeDescription(self, resultStr):
-		return lib.mdProfilerGetResultCodeDescription(self.I, resultStr.encode('utf-8')).decode('utf-8')
+		return lib.mdProfilerGetResultCodeDescription(self.I, (resultStr or '').encode('utf-8')).decode('utf-8')
 
 	def AddColumn(self, columnName, columnType, dataType):
-		lib.mdProfilerAddColumn(self.I, columnName.encode('utf-8'), ProfilerColumnType(columnType).value, ProfilerDataType(dataType).value)
+		lib.mdProfilerAddColumn(self.I, (columnName or '').encode('utf-8'), ProfilerColumnType(columnType).value, ProfilerDataType(dataType).value)
 
 	def SetColumnCustomPattern(self, columnName, regEx):
-		return lib.mdProfilerSetColumnCustomPattern(self.I, columnName.encode('utf-8'), regEx.encode('utf-8'))
+		return lib.mdProfilerSetColumnCustomPattern(self.I, (columnName or '').encode('utf-8'), (regEx or '').encode('utf-8'))
 
 	def SetColumnValueRange(self, columnName, fromStr, toStr):
-		return lib.mdProfilerSetColumnValueRange(self.I, columnName.encode('utf-8'), fromStr.encode('utf-8'), toStr.encode('utf-8'))
+		return lib.mdProfilerSetColumnValueRange(self.I, (columnName or '').encode('utf-8'), (fromStr or '').encode('utf-8'), (toStr or '').encode('utf-8'))
 
 	def SetColumnDefaultValue(self, columnName, value):
-		return lib.mdProfilerSetColumnDefaultValue(self.I, columnName.encode('utf-8'), value.encode('utf-8'))
+		return lib.mdProfilerSetColumnDefaultValue(self.I, (columnName or '').encode('utf-8'), (value or '').encode('utf-8'))
 
 	def SetColumnSize(self, columnName, size):
-		lib.mdProfilerSetColumnSize(self.I, columnName.encode('utf-8'), size)
+		lib.mdProfilerSetColumnSize(self.I, (columnName or '').encode('utf-8'), size)
 
 	def SetColumnPrecision(self, columnName, precision):
-		lib.mdProfilerSetColumnPrecision(self.I, columnName.encode('utf-8'), precision)
+		lib.mdProfilerSetColumnPrecision(self.I, (columnName or '').encode('utf-8'), precision)
 
 	def SetColumnScale(self, columnName, scale):
-		lib.mdProfilerSetColumnScale(self.I, columnName.encode('utf-8'), scale)
+		lib.mdProfilerSetColumnScale(self.I, (columnName or '').encode('utf-8'), scale)
 
 	def SetColumnIgnoreOnError(self, columnName, ignore):
-		lib.mdProfilerSetColumnIgnoreOnError(self.I, columnName.encode('utf-8'), ignore)
+		lib.mdProfilerSetColumnIgnoreOnError(self.I, (columnName or '').encode('utf-8'), ignore)
 
 	def StartProfiling(self):
 		lib.mdProfilerStartProfiling(self.I)
 
 	def SetColumn(self, columnName, content):
-		lib.mdProfilerSetColumn(self.I, columnName.encode('utf-8'), content.encode('utf-8'))
+		lib.mdProfilerSetColumn(self.I, (columnName or '').encode('utf-8'), (content or '').encode('utf-8'))
 
 	def SetColumnNull(self, columnName):
-		lib.mdProfilerSetColumnNull(self.I, columnName.encode('utf-8'))
+		lib.mdProfilerSetColumnNull(self.I, (columnName or '').encode('utf-8'))
 
 	def GetColumnValue(self, columnName):
-		return lib.mdProfilerGetColumnValue(self.I, columnName.encode('utf-8')).decode('utf-8')
+		return lib.mdProfilerGetColumnValue(self.I, (columnName or '').encode('utf-8')).decode('utf-8')
 
 	def AddRecord(self):
 		lib.mdProfilerAddRecord(self.I)
 
 	def GetResults(self, columnName):
-		return lib.mdProfilerGetResults(self.I, columnName.encode('utf-8')).decode('utf-8')
+		return lib.mdProfilerGetResults(self.I, (columnName or '').encode('utf-8')).decode('utf-8')
 
 	def SetTextQualifier(self, qualifier):
-		lib.mdProfilerSetTextQualifier(self.I, qualifier.encode('utf-8'))
+		lib.mdProfilerSetTextQualifier(self.I, (qualifier or '').encode('utf-8'))
 
 	def SetColumnDelimiter(self, delimiter):
-		lib.mdProfilerSetColumnDelimiter(self.I, delimiter.encode('utf-8'))
+		lib.mdProfilerSetColumnDelimiter(self.I, (delimiter or '').encode('utf-8'))
 
 	def SetRowDelimiter(self, delimiter):
-		lib.mdProfilerSetRowDelimiter(self.I, delimiter.encode('utf-8'))
+		lib.mdProfilerSetRowDelimiter(self.I, (delimiter or '').encode('utf-8'))
 
 	def AddDelimitedRecord(self, record):
-		return lib.mdProfilerAddDelimitedRecord(self.I, record.encode('utf-8')).decode('utf-8')
+		return lib.mdProfilerAddDelimitedRecord(self.I, (record or '').encode('utf-8')).decode('utf-8')
 
 	def ProfileData(self):
 		lib.mdProfilerProfileData(self.I)
@@ -791,457 +791,457 @@ class mdProfiler(object):
 		return lib.mdProfilerGetColumnName(self.I, index).decode('utf-8')
 
 	def GetColumnColumnType(self, columnName):
-		return ProfilerColumnType(lib.mdProfilerGetColumnColumnType(self.I, columnName.encode('utf-8')))
+		return ProfilerColumnType(lib.mdProfilerGetColumnColumnType(self.I, (columnName or '').encode('utf-8')))
 
 	def GetColumnDataType(self, columnName):
-		return ProfilerDataType(lib.mdProfilerGetColumnDataType(self.I, columnName.encode('utf-8')))
+		return ProfilerDataType(lib.mdProfilerGetColumnDataType(self.I, (columnName or '').encode('utf-8')))
 
 	def GetColumnSize(self, columnName):
-		return lib.mdProfilerGetColumnSize(self.I, columnName.encode('utf-8'))
+		return lib.mdProfilerGetColumnSize(self.I, (columnName or '').encode('utf-8'))
 
 	def GetColumnPrecision(self, columnName):
-		return lib.mdProfilerGetColumnPrecision(self.I, columnName.encode('utf-8'))
+		return lib.mdProfilerGetColumnPrecision(self.I, (columnName or '').encode('utf-8'))
 
 	def GetColumnScale(self, columnName):
-		return lib.mdProfilerGetColumnScale(self.I, columnName.encode('utf-8'))
+		return lib.mdProfilerGetColumnScale(self.I, (columnName or '').encode('utf-8'))
 
 	def GetColumnValueRangeFrom(self, columnName):
-		return lib.mdProfilerGetColumnValueRangeFrom(self.I, columnName.encode('utf-8')).decode('utf-8')
+		return lib.mdProfilerGetColumnValueRangeFrom(self.I, (columnName or '').encode('utf-8')).decode('utf-8')
 
 	def GetColumnValueRangeTo(self, columnName):
-		return lib.mdProfilerGetColumnValueRangeTo(self.I, columnName.encode('utf-8')).decode('utf-8')
+		return lib.mdProfilerGetColumnValueRangeTo(self.I, (columnName or '').encode('utf-8')).decode('utf-8')
 
 	def GetColumnDefaultValue(self, columnName):
-		return lib.mdProfilerGetColumnDefaultValue(self.I, columnName.encode('utf-8')).decode('utf-8')
+		return lib.mdProfilerGetColumnDefaultValue(self.I, (columnName or '').encode('utf-8')).decode('utf-8')
 
 	def GetColumnCustomPatterns(self, columnName):
-		return lib.mdProfilerGetColumnCustomPatterns(self.I, columnName.encode('utf-8')).decode('utf-8')
+		return lib.mdProfilerGetColumnCustomPatterns(self.I, (columnName or '').encode('utf-8')).decode('utf-8')
 
 	def GetColumnInferredDataType(self, columnName):
-		return ProfilerDataType(lib.mdProfilerGetColumnInferredDataType(self.I, columnName.encode('utf-8')))
+		return ProfilerDataType(lib.mdProfilerGetColumnInferredDataType(self.I, (columnName or '').encode('utf-8')))
 
 	def GetColumnInferredColumnType(self, columnName):
-		return ProfilerColumnType(lib.mdProfilerGetColumnInferredColumnType(self.I, columnName.encode('utf-8')))
+		return ProfilerColumnType(lib.mdProfilerGetColumnInferredColumnType(self.I, (columnName or '').encode('utf-8')))
 
 	def GetColumnSortation(self, columnName):
-		return Sortation(lib.mdProfilerGetColumnSortation(self.I, columnName.encode('utf-8')))
+		return Sortation(lib.mdProfilerGetColumnSortation(self.I, (columnName or '').encode('utf-8')))
 
 	def GetColumnSortationPercent(self, columnName):
-		return lib.mdProfilerGetColumnSortationPercent(self.I, columnName.encode('utf-8'))
+		return lib.mdProfilerGetColumnSortationPercent(self.I, (columnName or '').encode('utf-8'))
 
 	def GetColumnMostPopularCount(self, columnName):
-		return lib.mdProfilerGetColumnMostPopularCount(self.I, columnName.encode('utf-8'))
+		return lib.mdProfilerGetColumnMostPopularCount(self.I, (columnName or '').encode('utf-8'))
 
 	def GetColumnDistinctCount(self, columnName):
-		return lib.mdProfilerGetColumnDistinctCount(self.I, columnName.encode('utf-8'))
+		return lib.mdProfilerGetColumnDistinctCount(self.I, (columnName or '').encode('utf-8'))
 
 	def GetColumnUniqueCount(self, columnName):
-		return lib.mdProfilerGetColumnUniqueCount(self.I, columnName.encode('utf-8'))
+		return lib.mdProfilerGetColumnUniqueCount(self.I, (columnName or '').encode('utf-8'))
 
 	def GetColumnDefaultValueCount(self, columnName):
-		return lib.mdProfilerGetColumnDefaultValueCount(self.I, columnName.encode('utf-8'))
+		return lib.mdProfilerGetColumnDefaultValueCount(self.I, (columnName or '').encode('utf-8'))
 
 	def GetColumnBelowRangeCount(self, columnName):
-		return lib.mdProfilerGetColumnBelowRangeCount(self.I, columnName.encode('utf-8'))
+		return lib.mdProfilerGetColumnBelowRangeCount(self.I, (columnName or '').encode('utf-8'))
 
 	def GetColumnAboveRangeCount(self, columnName):
-		return lib.mdProfilerGetColumnAboveRangeCount(self.I, columnName.encode('utf-8'))
+		return lib.mdProfilerGetColumnAboveRangeCount(self.I, (columnName or '').encode('utf-8'))
 
 	def GetColumnAboveSizeCount(self, columnName):
-		return lib.mdProfilerGetColumnAboveSizeCount(self.I, columnName.encode('utf-8'))
+		return lib.mdProfilerGetColumnAboveSizeCount(self.I, (columnName or '').encode('utf-8'))
 
 	def GetColumnAbovePrecisionCount(self, columnName):
-		return lib.mdProfilerGetColumnAbovePrecisionCount(self.I, columnName.encode('utf-8'))
+		return lib.mdProfilerGetColumnAbovePrecisionCount(self.I, (columnName or '').encode('utf-8'))
 
 	def GetColumnAboveScaleCount(self, columnName):
-		return lib.mdProfilerGetColumnAboveScaleCount(self.I, columnName.encode('utf-8'))
+		return lib.mdProfilerGetColumnAboveScaleCount(self.I, (columnName or '').encode('utf-8'))
 
 	def GetColumnInvalidRegExCount(self, columnName):
-		return lib.mdProfilerGetColumnInvalidRegExCount(self.I, columnName.encode('utf-8'))
+		return lib.mdProfilerGetColumnInvalidRegExCount(self.I, (columnName or '').encode('utf-8'))
 
 	def GetColumnEmptyCount(self, columnName):
-		return lib.mdProfilerGetColumnEmptyCount(self.I, columnName.encode('utf-8'))
+		return lib.mdProfilerGetColumnEmptyCount(self.I, (columnName or '').encode('utf-8'))
 
 	def GetColumnNullCount(self, columnName):
-		return lib.mdProfilerGetColumnNullCount(self.I, columnName.encode('utf-8'))
+		return lib.mdProfilerGetColumnNullCount(self.I, (columnName or '').encode('utf-8'))
 
 	def GetColumnInvalidDataCount(self, columnName):
-		return lib.mdProfilerGetColumnInvalidDataCount(self.I, columnName.encode('utf-8'))
+		return lib.mdProfilerGetColumnInvalidDataCount(self.I, (columnName or '').encode('utf-8'))
 
 	def GetColumnInvalidUTF8Count(self, columnName):
-		return lib.mdProfilerGetColumnInvalidUTF8Count(self.I, columnName.encode('utf-8'))
+		return lib.mdProfilerGetColumnInvalidUTF8Count(self.I, (columnName or '').encode('utf-8'))
 
 	def GetColumnNonPrintingCharCount(self, columnName):
-		return lib.mdProfilerGetColumnNonPrintingCharCount(self.I, columnName.encode('utf-8'))
+		return lib.mdProfilerGetColumnNonPrintingCharCount(self.I, (columnName or '').encode('utf-8'))
 
 	def GetColumnDiacriticCharCount(self, columnName):
-		return lib.mdProfilerGetColumnDiacriticCharCount(self.I, columnName.encode('utf-8'))
+		return lib.mdProfilerGetColumnDiacriticCharCount(self.I, (columnName or '').encode('utf-8'))
 
 	def GetColumnForeignCharCount(self, columnName):
-		return lib.mdProfilerGetColumnForeignCharCount(self.I, columnName.encode('utf-8'))
+		return lib.mdProfilerGetColumnForeignCharCount(self.I, (columnName or '').encode('utf-8'))
 
 	def GetColumnAlphaOnlyCount(self, columnName):
-		return lib.mdProfilerGetColumnAlphaOnlyCount(self.I, columnName.encode('utf-8'))
+		return lib.mdProfilerGetColumnAlphaOnlyCount(self.I, (columnName or '').encode('utf-8'))
 
 	def GetColumnNumericOnlyCount(self, columnName):
-		return lib.mdProfilerGetColumnNumericOnlyCount(self.I, columnName.encode('utf-8'))
+		return lib.mdProfilerGetColumnNumericOnlyCount(self.I, (columnName or '').encode('utf-8'))
 
 	def GetColumnAlphaNumericCount(self, columnName):
-		return lib.mdProfilerGetColumnAlphaNumericCount(self.I, columnName.encode('utf-8'))
+		return lib.mdProfilerGetColumnAlphaNumericCount(self.I, (columnName or '').encode('utf-8'))
 
 	def GetColumnUpperCaseOnlyCount(self, columnName):
-		return lib.mdProfilerGetColumnUpperCaseOnlyCount(self.I, columnName.encode('utf-8'))
+		return lib.mdProfilerGetColumnUpperCaseOnlyCount(self.I, (columnName or '').encode('utf-8'))
 
 	def GetColumnLowerCaseOnlyCount(self, columnName):
-		return lib.mdProfilerGetColumnLowerCaseOnlyCount(self.I, columnName.encode('utf-8'))
+		return lib.mdProfilerGetColumnLowerCaseOnlyCount(self.I, (columnName or '').encode('utf-8'))
 
 	def GetColumnMixedCaseCount(self, columnName):
-		return lib.mdProfilerGetColumnMixedCaseCount(self.I, columnName.encode('utf-8'))
+		return lib.mdProfilerGetColumnMixedCaseCount(self.I, (columnName or '').encode('utf-8'))
 
 	def GetColumnSingleSpaceCount(self, columnName):
-		return lib.mdProfilerGetColumnSingleSpaceCount(self.I, columnName.encode('utf-8'))
+		return lib.mdProfilerGetColumnSingleSpaceCount(self.I, (columnName or '').encode('utf-8'))
 
 	def GetColumnMultiSpaceCount(self, columnName):
-		return lib.mdProfilerGetColumnMultiSpaceCount(self.I, columnName.encode('utf-8'))
+		return lib.mdProfilerGetColumnMultiSpaceCount(self.I, (columnName or '').encode('utf-8'))
 
 	def GetColumnLeadingSpaceCount(self, columnName):
-		return lib.mdProfilerGetColumnLeadingSpaceCount(self.I, columnName.encode('utf-8'))
+		return lib.mdProfilerGetColumnLeadingSpaceCount(self.I, (columnName or '').encode('utf-8'))
 
 	def GetColumnTrailingSpaceCount(self, columnName):
-		return lib.mdProfilerGetColumnTrailingSpaceCount(self.I, columnName.encode('utf-8'))
+		return lib.mdProfilerGetColumnTrailingSpaceCount(self.I, (columnName or '').encode('utf-8'))
 
 	def GetColumnMaxSpaces(self, columnName):
-		return lib.mdProfilerGetColumnMaxSpaces(self.I, columnName.encode('utf-8'))
+		return lib.mdProfilerGetColumnMaxSpaces(self.I, (columnName or '').encode('utf-8'))
 
 	def GetColumnMinSpaces(self, columnName):
-		return lib.mdProfilerGetColumnMinSpaces(self.I, columnName.encode('utf-8'))
+		return lib.mdProfilerGetColumnMinSpaces(self.I, (columnName or '').encode('utf-8'))
 
 	def GetColumnTotalSpaces(self, columnName):
-		return lib.mdProfilerGetColumnTotalSpaces(self.I, columnName.encode('utf-8'))
+		return lib.mdProfilerGetColumnTotalSpaces(self.I, (columnName or '').encode('utf-8'))
 
 	def GetColumnTotalWordBreaks(self, columnName):
-		return lib.mdProfilerGetColumnTotalWordBreaks(self.I, columnName.encode('utf-8'))
+		return lib.mdProfilerGetColumnTotalWordBreaks(self.I, (columnName or '').encode('utf-8'))
 
 	def GetColumnAvgSpaces(self, columnName):
-		return lib.mdProfilerGetColumnAvgSpaces(self.I, columnName.encode('utf-8'))
+		return lib.mdProfilerGetColumnAvgSpaces(self.I, (columnName or '').encode('utf-8'))
 
 	def GetColumnDecorationCharCount(self, columnName):
-		return lib.mdProfilerGetColumnDecorationCharCount(self.I, columnName.encode('utf-8'))
+		return lib.mdProfilerGetColumnDecorationCharCount(self.I, (columnName or '').encode('utf-8'))
 
 	def GetColumnProfanityCount(self, columnName):
-		return lib.mdProfilerGetColumnProfanityCount(self.I, columnName.encode('utf-8'))
+		return lib.mdProfilerGetColumnProfanityCount(self.I, (columnName or '').encode('utf-8'))
 
 	def GetColumnInconsistentDataCount(self, columnName):
-		return lib.mdProfilerGetColumnInconsistentDataCount(self.I, columnName.encode('utf-8'))
+		return lib.mdProfilerGetColumnInconsistentDataCount(self.I, (columnName or '').encode('utf-8'))
 
 	def GetColumnStringMaxValue(self, columnName):
-		return lib.mdProfilerGetColumnStringMaxValue(self.I, columnName.encode('utf-8')).decode('utf-8')
+		return lib.mdProfilerGetColumnStringMaxValue(self.I, (columnName or '').encode('utf-8')).decode('utf-8')
 
 	def GetColumnStringMinValue(self, columnName):
-		return lib.mdProfilerGetColumnStringMinValue(self.I, columnName.encode('utf-8')).decode('utf-8')
+		return lib.mdProfilerGetColumnStringMinValue(self.I, (columnName or '').encode('utf-8')).decode('utf-8')
 
 	def GetColumnStringQ1Value(self, columnName):
-		return lib.mdProfilerGetColumnStringQ1Value(self.I, columnName.encode('utf-8')).decode('utf-8')
+		return lib.mdProfilerGetColumnStringQ1Value(self.I, (columnName or '').encode('utf-8')).decode('utf-8')
 
 	def GetColumnStringMedValue(self, columnName):
-		return lib.mdProfilerGetColumnStringMedValue(self.I, columnName.encode('utf-8')).decode('utf-8')
+		return lib.mdProfilerGetColumnStringMedValue(self.I, (columnName or '').encode('utf-8')).decode('utf-8')
 
 	def GetColumnStringQ3Value(self, columnName):
-		return lib.mdProfilerGetColumnStringQ3Value(self.I, columnName.encode('utf-8')).decode('utf-8')
+		return lib.mdProfilerGetColumnStringQ3Value(self.I, (columnName or '').encode('utf-8')).decode('utf-8')
 
 	def GetColumnStringMaxLength(self, columnName):
-		return lib.mdProfilerGetColumnStringMaxLength(self.I, columnName.encode('utf-8'))
+		return lib.mdProfilerGetColumnStringMaxLength(self.I, (columnName or '').encode('utf-8'))
 
 	def GetColumnStringMinLength(self, columnName):
-		return lib.mdProfilerGetColumnStringMinLength(self.I, columnName.encode('utf-8'))
+		return lib.mdProfilerGetColumnStringMinLength(self.I, (columnName or '').encode('utf-8'))
 
 	def GetColumnStringAvgLength(self, columnName):
-		return lib.mdProfilerGetColumnStringAvgLength(self.I, columnName.encode('utf-8'))
+		return lib.mdProfilerGetColumnStringAvgLength(self.I, (columnName or '').encode('utf-8'))
 
 	def GetColumnStringQ1Length(self, columnName):
-		return lib.mdProfilerGetColumnStringQ1Length(self.I, columnName.encode('utf-8'))
+		return lib.mdProfilerGetColumnStringQ1Length(self.I, (columnName or '').encode('utf-8'))
 
 	def GetColumnStringMedLength(self, columnName):
-		return lib.mdProfilerGetColumnStringMedLength(self.I, columnName.encode('utf-8'))
+		return lib.mdProfilerGetColumnStringMedLength(self.I, (columnName or '').encode('utf-8'))
 
 	def GetColumnStringQ3Length(self, columnName):
-		return lib.mdProfilerGetColumnStringQ3Length(self.I, columnName.encode('utf-8'))
+		return lib.mdProfilerGetColumnStringQ3Length(self.I, (columnName or '').encode('utf-8'))
 
 	def GetColumnWordMaxValue(self, columnName):
-		return lib.mdProfilerGetColumnWordMaxValue(self.I, columnName.encode('utf-8')).decode('utf-8')
+		return lib.mdProfilerGetColumnWordMaxValue(self.I, (columnName or '').encode('utf-8')).decode('utf-8')
 
 	def GetColumnWordMinValue(self, columnName):
-		return lib.mdProfilerGetColumnWordMinValue(self.I, columnName.encode('utf-8')).decode('utf-8')
+		return lib.mdProfilerGetColumnWordMinValue(self.I, (columnName or '').encode('utf-8')).decode('utf-8')
 
 	def GetColumnWordQ1Value(self, columnName):
-		return lib.mdProfilerGetColumnWordQ1Value(self.I, columnName.encode('utf-8')).decode('utf-8')
+		return lib.mdProfilerGetColumnWordQ1Value(self.I, (columnName or '').encode('utf-8')).decode('utf-8')
 
 	def GetColumnWordMedValue(self, columnName):
-		return lib.mdProfilerGetColumnWordMedValue(self.I, columnName.encode('utf-8')).decode('utf-8')
+		return lib.mdProfilerGetColumnWordMedValue(self.I, (columnName or '').encode('utf-8')).decode('utf-8')
 
 	def GetColumnWordQ3Value(self, columnName):
-		return lib.mdProfilerGetColumnWordQ3Value(self.I, columnName.encode('utf-8')).decode('utf-8')
+		return lib.mdProfilerGetColumnWordQ3Value(self.I, (columnName or '').encode('utf-8')).decode('utf-8')
 
 	def GetColumnWordMaxLength(self, columnName):
-		return lib.mdProfilerGetColumnWordMaxLength(self.I, columnName.encode('utf-8'))
+		return lib.mdProfilerGetColumnWordMaxLength(self.I, (columnName or '').encode('utf-8'))
 
 	def GetColumnWordMinLength(self, columnName):
-		return lib.mdProfilerGetColumnWordMinLength(self.I, columnName.encode('utf-8'))
+		return lib.mdProfilerGetColumnWordMinLength(self.I, (columnName or '').encode('utf-8'))
 
 	def GetColumnWordAvgLength(self, columnName):
-		return lib.mdProfilerGetColumnWordAvgLength(self.I, columnName.encode('utf-8'))
+		return lib.mdProfilerGetColumnWordAvgLength(self.I, (columnName or '').encode('utf-8'))
 
 	def GetColumnWordQ1Length(self, columnName):
-		return lib.mdProfilerGetColumnWordQ1Length(self.I, columnName.encode('utf-8'))
+		return lib.mdProfilerGetColumnWordQ1Length(self.I, (columnName or '').encode('utf-8'))
 
 	def GetColumnWordMedLength(self, columnName):
-		return lib.mdProfilerGetColumnWordMedLength(self.I, columnName.encode('utf-8'))
+		return lib.mdProfilerGetColumnWordMedLength(self.I, (columnName or '').encode('utf-8'))
 
 	def GetColumnWordQ3Length(self, columnName):
-		return lib.mdProfilerGetColumnWordQ3Length(self.I, columnName.encode('utf-8'))
+		return lib.mdProfilerGetColumnWordQ3Length(self.I, (columnName or '').encode('utf-8'))
 
 	def GetColumnMaxWords(self, columnName):
-		return lib.mdProfilerGetColumnMaxWords(self.I, columnName.encode('utf-8'))
+		return lib.mdProfilerGetColumnMaxWords(self.I, (columnName or '').encode('utf-8'))
 
 	def GetColumnMinWords(self, columnName):
-		return lib.mdProfilerGetColumnMinWords(self.I, columnName.encode('utf-8'))
+		return lib.mdProfilerGetColumnMinWords(self.I, (columnName or '').encode('utf-8'))
 
 	def GetColumnAvgWords(self, columnName):
-		return lib.mdProfilerGetColumnAvgWords(self.I, columnName.encode('utf-8'))
+		return lib.mdProfilerGetColumnAvgWords(self.I, (columnName or '').encode('utf-8'))
 
 	def GetColumnNumericMaxValue(self, columnName):
-		return lib.mdProfilerGetColumnNumericMaxValue(self.I, columnName.encode('utf-8'))
+		return lib.mdProfilerGetColumnNumericMaxValue(self.I, (columnName or '').encode('utf-8'))
 
 	def GetColumnNumericMinValue(self, columnName):
-		return lib.mdProfilerGetColumnNumericMinValue(self.I, columnName.encode('utf-8'))
+		return lib.mdProfilerGetColumnNumericMinValue(self.I, (columnName or '').encode('utf-8'))
 
 	def GetColumnNumericAvgValue(self, columnName):
-		return lib.mdProfilerGetColumnNumericAvgValue(self.I, columnName.encode('utf-8'))
+		return lib.mdProfilerGetColumnNumericAvgValue(self.I, (columnName or '').encode('utf-8'))
 
 	def GetColumnNumericQ1Value(self, columnName):
-		return lib.mdProfilerGetColumnNumericQ1Value(self.I, columnName.encode('utf-8'))
+		return lib.mdProfilerGetColumnNumericQ1Value(self.I, (columnName or '').encode('utf-8'))
 
 	def GetColumnNumericQ1IntValue(self, columnName):
-		return lib.mdProfilerGetColumnNumericQ1IntValue(self.I, columnName.encode('utf-8'))
+		return lib.mdProfilerGetColumnNumericQ1IntValue(self.I, (columnName or '').encode('utf-8'))
 
 	def GetColumnNumericMedValue(self, columnName):
-		return lib.mdProfilerGetColumnNumericMedValue(self.I, columnName.encode('utf-8'))
+		return lib.mdProfilerGetColumnNumericMedValue(self.I, (columnName or '').encode('utf-8'))
 
 	def GetColumnNumericMedIntValue(self, columnName):
-		return lib.mdProfilerGetColumnNumericMedIntValue(self.I, columnName.encode('utf-8'))
+		return lib.mdProfilerGetColumnNumericMedIntValue(self.I, (columnName or '').encode('utf-8'))
 
 	def GetColumnNumericQ3Value(self, columnName):
-		return lib.mdProfilerGetColumnNumericQ3Value(self.I, columnName.encode('utf-8'))
+		return lib.mdProfilerGetColumnNumericQ3Value(self.I, (columnName or '').encode('utf-8'))
 
 	def GetColumnNumericQ3IntValue(self, columnName):
-		return lib.mdProfilerGetColumnNumericQ3IntValue(self.I, columnName.encode('utf-8'))
+		return lib.mdProfilerGetColumnNumericQ3IntValue(self.I, (columnName or '').encode('utf-8'))
 
 	def GetColumnNumericStdDevValue(self, columnName):
-		return lib.mdProfilerGetColumnNumericStdDevValue(self.I, columnName.encode('utf-8'))
+		return lib.mdProfilerGetColumnNumericStdDevValue(self.I, (columnName or '').encode('utf-8'))
 
 	def GetColumnDateMaxValue(self, columnName):
-		return lib.mdProfilerGetColumnDateMaxValue(self.I, columnName.encode('utf-8')).decode('utf-8')
+		return lib.mdProfilerGetColumnDateMaxValue(self.I, (columnName or '').encode('utf-8')).decode('utf-8')
 
 	def GetColumnDateMinValue(self, columnName):
-		return lib.mdProfilerGetColumnDateMinValue(self.I, columnName.encode('utf-8')).decode('utf-8')
+		return lib.mdProfilerGetColumnDateMinValue(self.I, (columnName or '').encode('utf-8')).decode('utf-8')
 
 	def GetColumnDateAvgValue(self, columnName):
-		return lib.mdProfilerGetColumnDateAvgValue(self.I, columnName.encode('utf-8')).decode('utf-8')
+		return lib.mdProfilerGetColumnDateAvgValue(self.I, (columnName or '').encode('utf-8')).decode('utf-8')
 
 	def GetColumnDateQ1Value(self, columnName):
-		return lib.mdProfilerGetColumnDateQ1Value(self.I, columnName.encode('utf-8')).decode('utf-8')
+		return lib.mdProfilerGetColumnDateQ1Value(self.I, (columnName or '').encode('utf-8')).decode('utf-8')
 
 	def GetColumnDateMedValue(self, columnName):
-		return lib.mdProfilerGetColumnDateMedValue(self.I, columnName.encode('utf-8')).decode('utf-8')
+		return lib.mdProfilerGetColumnDateMedValue(self.I, (columnName or '').encode('utf-8')).decode('utf-8')
 
 	def GetColumnDateQ3Value(self, columnName):
-		return lib.mdProfilerGetColumnDateQ3Value(self.I, columnName.encode('utf-8')).decode('utf-8')
+		return lib.mdProfilerGetColumnDateQ3Value(self.I, (columnName or '').encode('utf-8')).decode('utf-8')
 
 	def GetColumnTimeMaxValue(self, columnName):
-		return lib.mdProfilerGetColumnTimeMaxValue(self.I, columnName.encode('utf-8')).decode('utf-8')
+		return lib.mdProfilerGetColumnTimeMaxValue(self.I, (columnName or '').encode('utf-8')).decode('utf-8')
 
 	def GetColumnTimeMinValue(self, columnName):
-		return lib.mdProfilerGetColumnTimeMinValue(self.I, columnName.encode('utf-8')).decode('utf-8')
+		return lib.mdProfilerGetColumnTimeMinValue(self.I, (columnName or '').encode('utf-8')).decode('utf-8')
 
 	def GetColumnTimeAvgValue(self, columnName):
-		return lib.mdProfilerGetColumnTimeAvgValue(self.I, columnName.encode('utf-8')).decode('utf-8')
+		return lib.mdProfilerGetColumnTimeAvgValue(self.I, (columnName or '').encode('utf-8')).decode('utf-8')
 
 	def GetColumnTimeQ1Value(self, columnName):
-		return lib.mdProfilerGetColumnTimeQ1Value(self.I, columnName.encode('utf-8')).decode('utf-8')
+		return lib.mdProfilerGetColumnTimeQ1Value(self.I, (columnName or '').encode('utf-8')).decode('utf-8')
 
 	def GetColumnTimeMedValue(self, columnName):
-		return lib.mdProfilerGetColumnTimeMedValue(self.I, columnName.encode('utf-8')).decode('utf-8')
+		return lib.mdProfilerGetColumnTimeMedValue(self.I, (columnName or '').encode('utf-8')).decode('utf-8')
 
 	def GetColumnTimeQ3Value(self, columnName):
-		return lib.mdProfilerGetColumnTimeQ3Value(self.I, columnName.encode('utf-8')).decode('utf-8')
+		return lib.mdProfilerGetColumnTimeQ3Value(self.I, (columnName or '').encode('utf-8')).decode('utf-8')
 
 	def GetColumnDateNoCenturyCount(self, columnName):
-		return lib.mdProfilerGetColumnDateNoCenturyCount(self.I, columnName.encode('utf-8'))
+		return lib.mdProfilerGetColumnDateNoCenturyCount(self.I, (columnName or '').encode('utf-8'))
 
 	def GetColumnNameInconsistentOrderCount(self, columnName):
-		return lib.mdProfilerGetColumnNameInconsistentOrderCount(self.I, columnName.encode('utf-8'))
+		return lib.mdProfilerGetColumnNameInconsistentOrderCount(self.I, (columnName or '').encode('utf-8'))
 
 	def GetColumnNameMultipleNameCount(self, columnName):
-		return lib.mdProfilerGetColumnNameMultipleNameCount(self.I, columnName.encode('utf-8'))
+		return lib.mdProfilerGetColumnNameMultipleNameCount(self.I, (columnName or '').encode('utf-8'))
 
 	def GetColumnNameSuspiciousNameCount(self, columnName):
-		return lib.mdProfilerGetColumnNameSuspiciousNameCount(self.I, columnName.encode('utf-8'))
+		return lib.mdProfilerGetColumnNameSuspiciousNameCount(self.I, (columnName or '').encode('utf-8'))
 
 	def GetColumnStateCount(self, columnName):
-		return lib.mdProfilerGetColumnStateCount(self.I, columnName.encode('utf-8'))
+		return lib.mdProfilerGetColumnStateCount(self.I, (columnName or '').encode('utf-8'))
 
 	def GetColumnProvinceCount(self, columnName):
-		return lib.mdProfilerGetColumnProvinceCount(self.I, columnName.encode('utf-8'))
+		return lib.mdProfilerGetColumnProvinceCount(self.I, (columnName or '').encode('utf-8'))
 
 	def GetColumnStateProvinceNonStandardCount(self, columnName):
-		return lib.mdProfilerGetColumnStateProvinceNonStandardCount(self.I, columnName.encode('utf-8'))
+		return lib.mdProfilerGetColumnStateProvinceNonStandardCount(self.I, (columnName or '').encode('utf-8'))
 
 	def GetColumnStateProvinceInvalidCount(self, columnName):
-		return lib.mdProfilerGetColumnStateProvinceInvalidCount(self.I, columnName.encode('utf-8'))
+		return lib.mdProfilerGetColumnStateProvinceInvalidCount(self.I, (columnName or '').encode('utf-8'))
 
 	def GetColumnZipCodeCount(self, columnName):
-		return lib.mdProfilerGetColumnZipCodeCount(self.I, columnName.encode('utf-8'))
+		return lib.mdProfilerGetColumnZipCodeCount(self.I, (columnName or '').encode('utf-8'))
 
 	def GetColumnPlus4Count(self, columnName):
-		return lib.mdProfilerGetColumnPlus4Count(self.I, columnName.encode('utf-8'))
+		return lib.mdProfilerGetColumnPlus4Count(self.I, (columnName or '').encode('utf-8'))
 
 	def GetColumnZipCodeInvalidCount(self, columnName):
-		return lib.mdProfilerGetColumnZipCodeInvalidCount(self.I, columnName.encode('utf-8'))
+		return lib.mdProfilerGetColumnZipCodeInvalidCount(self.I, (columnName or '').encode('utf-8'))
 
 	def GetColumnPostalCodeCount(self, columnName):
-		return lib.mdProfilerGetColumnPostalCodeCount(self.I, columnName.encode('utf-8'))
+		return lib.mdProfilerGetColumnPostalCodeCount(self.I, (columnName or '').encode('utf-8'))
 
 	def GetColumnPostalCodeInvalidCount(self, columnName):
-		return lib.mdProfilerGetColumnPostalCodeInvalidCount(self.I, columnName.encode('utf-8'))
+		return lib.mdProfilerGetColumnPostalCodeInvalidCount(self.I, (columnName or '').encode('utf-8'))
 
 	def GetColumnZipCodePostalCodeInvalidCount(self, columnName):
-		return lib.mdProfilerGetColumnZipCodePostalCodeInvalidCount(self.I, columnName.encode('utf-8'))
+		return lib.mdProfilerGetColumnZipCodePostalCodeInvalidCount(self.I, (columnName or '').encode('utf-8'))
 
 	def GetColumnStateZipCodeMismatchCount(self, columnName):
-		return lib.mdProfilerGetColumnStateZipCodeMismatchCount(self.I, columnName.encode('utf-8'))
+		return lib.mdProfilerGetColumnStateZipCodeMismatchCount(self.I, (columnName or '').encode('utf-8'))
 
 	def GetColumnProvincePostalCodeMismatchCount(self, columnName):
-		return lib.mdProfilerGetColumnProvincePostalCodeMismatchCount(self.I, columnName.encode('utf-8'))
+		return lib.mdProfilerGetColumnProvincePostalCodeMismatchCount(self.I, (columnName or '').encode('utf-8'))
 
 	def GetColumnCountryNonStandardCount(self, columnName):
-		return lib.mdProfilerGetColumnCountryNonStandardCount(self.I, columnName.encode('utf-8'))
+		return lib.mdProfilerGetColumnCountryNonStandardCount(self.I, (columnName or '').encode('utf-8'))
 
 	def GetColumnCountryInvalidCount(self, columnName):
-		return lib.mdProfilerGetColumnCountryInvalidCount(self.I, columnName.encode('utf-8'))
+		return lib.mdProfilerGetColumnCountryInvalidCount(self.I, (columnName or '').encode('utf-8'))
 
 	def GetColumnEmailSyntaxCount(self, columnName):
-		return lib.mdProfilerGetColumnEmailSyntaxCount(self.I, columnName.encode('utf-8'))
+		return lib.mdProfilerGetColumnEmailSyntaxCount(self.I, (columnName or '').encode('utf-8'))
 
 	def GetColumnEmailMobileDomainCount(self, columnName):
-		return lib.mdProfilerGetColumnEmailMobileDomainCount(self.I, columnName.encode('utf-8'))
+		return lib.mdProfilerGetColumnEmailMobileDomainCount(self.I, (columnName or '').encode('utf-8'))
 
 	def GetColumnEmailMisspelledDomainCount(self, columnName):
-		return lib.mdProfilerGetColumnEmailMisspelledDomainCount(self.I, columnName.encode('utf-8'))
+		return lib.mdProfilerGetColumnEmailMisspelledDomainCount(self.I, (columnName or '').encode('utf-8'))
 
 	def GetColumnEmailSpamtrapDomainCount(self, columnName):
-		return lib.mdProfilerGetColumnEmailSpamtrapDomainCount(self.I, columnName.encode('utf-8'))
+		return lib.mdProfilerGetColumnEmailSpamtrapDomainCount(self.I, (columnName or '').encode('utf-8'))
 
 	def GetColumnEmailDisposableDomainCount(self, columnName):
-		return lib.mdProfilerGetColumnEmailDisposableDomainCount(self.I, columnName.encode('utf-8'))
+		return lib.mdProfilerGetColumnEmailDisposableDomainCount(self.I, (columnName or '').encode('utf-8'))
 
 	def GetColumnPhoneInvalidCount(self, columnName):
-		return lib.mdProfilerGetColumnPhoneInvalidCount(self.I, columnName.encode('utf-8'))
+		return lib.mdProfilerGetColumnPhoneInvalidCount(self.I, (columnName or '').encode('utf-8'))
 
 	def StartDataFrequency(self, columnName, order):
-		return lib.mdProfilerStartDataFrequency(self.I, columnName.encode('utf-8'), Order(order).value)
+		return lib.mdProfilerStartDataFrequency(self.I, (columnName or '').encode('utf-8'), Order(order).value)
 
 	def GetDataFrequencyValue(self, columnName):
-		return lib.mdProfilerGetDataFrequencyValue(self.I, columnName.encode('utf-8')).decode('utf-8')
+		return lib.mdProfilerGetDataFrequencyValue(self.I, (columnName or '').encode('utf-8')).decode('utf-8')
 
 	def GetDataFrequencyCount(self, columnName):
-		return lib.mdProfilerGetDataFrequencyCount(self.I, columnName.encode('utf-8'))
+		return lib.mdProfilerGetDataFrequencyCount(self.I, (columnName or '').encode('utf-8'))
 
 	def GetNextDataFrequency(self, columnName):
-		return lib.mdProfilerGetNextDataFrequency(self.I, columnName.encode('utf-8'))
+		return lib.mdProfilerGetNextDataFrequency(self.I, (columnName or '').encode('utf-8'))
 
 	def StartLengthFrequency(self, columnName, order):
-		return lib.mdProfilerStartLengthFrequency(self.I, columnName.encode('utf-8'), Order(order).value)
+		return lib.mdProfilerStartLengthFrequency(self.I, (columnName or '').encode('utf-8'), Order(order).value)
 
 	def GetLengthFrequencyValue(self, columnName):
-		return lib.mdProfilerGetLengthFrequencyValue(self.I, columnName.encode('utf-8'))
+		return lib.mdProfilerGetLengthFrequencyValue(self.I, (columnName or '').encode('utf-8'))
 
 	def GetLengthFrequencyCount(self, columnName):
-		return lib.mdProfilerGetLengthFrequencyCount(self.I, columnName.encode('utf-8'))
+		return lib.mdProfilerGetLengthFrequencyCount(self.I, (columnName or '').encode('utf-8'))
 
 	def GetNextLengthFrequency(self, columnName):
-		return lib.mdProfilerGetNextLengthFrequency(self.I, columnName.encode('utf-8'))
+		return lib.mdProfilerGetNextLengthFrequency(self.I, (columnName or '').encode('utf-8'))
 
 	def StartPatternFrequency(self, columnName, order):
-		return lib.mdProfilerStartPatternFrequency(self.I, columnName.encode('utf-8'), Order(order).value)
+		return lib.mdProfilerStartPatternFrequency(self.I, (columnName or '').encode('utf-8'), Order(order).value)
 
 	def GetPatternFrequencyValue(self, columnName):
-		return lib.mdProfilerGetPatternFrequencyValue(self.I, columnName.encode('utf-8')).decode('utf-8')
+		return lib.mdProfilerGetPatternFrequencyValue(self.I, (columnName or '').encode('utf-8')).decode('utf-8')
 
 	def GetPatternFrequencyRegEx(self, columnName):
-		return lib.mdProfilerGetPatternFrequencyRegEx(self.I, columnName.encode('utf-8')).decode('utf-8')
+		return lib.mdProfilerGetPatternFrequencyRegEx(self.I, (columnName or '').encode('utf-8')).decode('utf-8')
 
 	def GetPatternFrequencyExample(self, columnName):
-		return lib.mdProfilerGetPatternFrequencyExample(self.I, columnName.encode('utf-8')).decode('utf-8')
+		return lib.mdProfilerGetPatternFrequencyExample(self.I, (columnName or '').encode('utf-8')).decode('utf-8')
 
 	def GetPatternFrequencyCount(self, columnName):
-		return lib.mdProfilerGetPatternFrequencyCount(self.I, columnName.encode('utf-8'))
+		return lib.mdProfilerGetPatternFrequencyCount(self.I, (columnName or '').encode('utf-8'))
 
 	def GetNextPatternFrequency(self, columnName):
-		return lib.mdProfilerGetNextPatternFrequency(self.I, columnName.encode('utf-8'))
+		return lib.mdProfilerGetNextPatternFrequency(self.I, (columnName or '').encode('utf-8'))
 
 	def StartDateFrequency(self, columnName, order, dateSpan):
-		return lib.mdProfilerStartDateFrequency(self.I, columnName.encode('utf-8'), Order(order).value, DateSpan(dateSpan).value)
+		return lib.mdProfilerStartDateFrequency(self.I, (columnName or '').encode('utf-8'), Order(order).value, DateSpan(dateSpan).value)
 
 	def GetDateFrequencyValue(self, columnName):
-		return lib.mdProfilerGetDateFrequencyValue(self.I, columnName.encode('utf-8')).decode('utf-8')
+		return lib.mdProfilerGetDateFrequencyValue(self.I, (columnName or '').encode('utf-8')).decode('utf-8')
 
 	def GetDateFrequencyCount(self, columnName):
-		return lib.mdProfilerGetDateFrequencyCount(self.I, columnName.encode('utf-8'))
+		return lib.mdProfilerGetDateFrequencyCount(self.I, (columnName or '').encode('utf-8'))
 
 	def GetNextDateFrequency(self, columnName):
-		return lib.mdProfilerGetNextDateFrequency(self.I, columnName.encode('utf-8'))
+		return lib.mdProfilerGetNextDateFrequency(self.I, (columnName or '').encode('utf-8'))
 
 	def StartSoundExFrequency(self, columnName, order):
-		return lib.mdProfilerStartSoundExFrequency(self.I, columnName.encode('utf-8'), Order(order).value)
+		return lib.mdProfilerStartSoundExFrequency(self.I, (columnName or '').encode('utf-8'), Order(order).value)
 
 	def GetSoundExFrequencyValue(self, columnName):
-		return lib.mdProfilerGetSoundExFrequencyValue(self.I, columnName.encode('utf-8')).decode('utf-8')
+		return lib.mdProfilerGetSoundExFrequencyValue(self.I, (columnName or '').encode('utf-8')).decode('utf-8')
 
 	def GetSoundExFrequencyExample(self, columnName):
-		return lib.mdProfilerGetSoundExFrequencyExample(self.I, columnName.encode('utf-8')).decode('utf-8')
+		return lib.mdProfilerGetSoundExFrequencyExample(self.I, (columnName or '').encode('utf-8')).decode('utf-8')
 
 	def GetSoundExFrequencyCount(self, columnName):
-		return lib.mdProfilerGetSoundExFrequencyCount(self.I, columnName.encode('utf-8'))
+		return lib.mdProfilerGetSoundExFrequencyCount(self.I, (columnName or '').encode('utf-8'))
 
 	def GetNextSoundExFrequency(self, columnName):
-		return lib.mdProfilerGetNextSoundExFrequency(self.I, columnName.encode('utf-8'))
+		return lib.mdProfilerGetNextSoundExFrequency(self.I, (columnName or '').encode('utf-8'))
 
 	def StartWordFrequency(self, columnName, order):
-		return lib.mdProfilerStartWordFrequency(self.I, columnName.encode('utf-8'), Order(order).value)
+		return lib.mdProfilerStartWordFrequency(self.I, (columnName or '').encode('utf-8'), Order(order).value)
 
 	def GetWordFrequencyValue(self, columnName):
-		return lib.mdProfilerGetWordFrequencyValue(self.I, columnName.encode('utf-8')).decode('utf-8')
+		return lib.mdProfilerGetWordFrequencyValue(self.I, (columnName or '').encode('utf-8')).decode('utf-8')
 
 	def GetWordFrequencyCount(self, columnName):
-		return lib.mdProfilerGetWordFrequencyCount(self.I, columnName.encode('utf-8'))
+		return lib.mdProfilerGetWordFrequencyCount(self.I, (columnName or '').encode('utf-8'))
 
 	def GetNextWordFrequency(self, columnName):
-		return lib.mdProfilerGetNextWordFrequency(self.I, columnName.encode('utf-8'))
+		return lib.mdProfilerGetNextWordFrequency(self.I, (columnName or '').encode('utf-8'))
 
 	def StartWordLengthFrequency(self, columnName, order):
-		return lib.mdProfilerStartWordLengthFrequency(self.I, columnName.encode('utf-8'), Order(order).value)
+		return lib.mdProfilerStartWordLengthFrequency(self.I, (columnName or '').encode('utf-8'), Order(order).value)
 
 	def GetWordLengthFrequencyValue(self, columnName):
-		return lib.mdProfilerGetWordLengthFrequencyValue(self.I, columnName.encode('utf-8'))
+		return lib.mdProfilerGetWordLengthFrequencyValue(self.I, (columnName or '').encode('utf-8'))
 
 	def GetWordLengthFrequencyCount(self, columnName):
-		return lib.mdProfilerGetWordLengthFrequencyCount(self.I, columnName.encode('utf-8'))
+		return lib.mdProfilerGetWordLengthFrequencyCount(self.I, (columnName or '').encode('utf-8'))
 
 	def GetNextWordLengthFrequency(self, columnName):
-		return lib.mdProfilerGetNextWordLengthFrequency(self.I, columnName.encode('utf-8'))
+		return lib.mdProfilerGetNextWordLengthFrequency(self.I, (columnName or '').encode('utf-8'))
 
 	def SetReserved(self, key, value):
-		lib.mdProfilerSetReserved(self.I, key.encode('utf-8'), value.encode('utf-8'))
+		lib.mdProfilerSetReserved(self.I, (key or '').encode('utf-8'), (value or '').encode('utf-8'))
 
 	def GetReserved(self, key):
-		return lib.mdProfilerGetReserved(self.I, key.encode('utf-8')).decode('utf-8')
+		return lib.mdProfilerGetReserved(self.I, (key or '').encode('utf-8')).decode('utf-8')
